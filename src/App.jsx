@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+
 
 function App() {
   
@@ -35,7 +35,7 @@ function App() {
   // Request User Authorization
 
   const clientId = '712443b6878f405580d4e8323b9980d1';
-const redirectUri = 'https://adorable-kitsune-619f1d.netlify.app/';
+const redirectUri = 'http://127.0.0.1:5173/';
 
 let codeVerifier = generateRandomString(128);
 
@@ -94,8 +94,10 @@ generateCodeChallenge(codeVerifier).then(codeChallenge => {
     console.error('Error:', error);
   });
 
+  let accessToken = localStorage.getItem('access_token');
+
   async function getProfile(accessToken) {
-    let accessToken = localStorage.getItem('access_token');
+    
   
     const response = await fetch('https://api.spotify.com/v1/me', {
       headers: {
@@ -115,9 +117,9 @@ generateCodeChallenge(codeVerifier).then(codeChallenge => {
 
 
 
-
   return (
     <>
+      <div>{data}</div>
       
     </>
   )
